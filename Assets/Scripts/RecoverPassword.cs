@@ -14,7 +14,7 @@ public class RecoverPassword : MonoBehaviour
     private static System.Random random = new System.Random();
     public string code;
     public string username;
-    public InputField email;
+    public InputField email, codeCheck;
     public void SendEmail()
     {
         code = RandomString(6);
@@ -31,12 +31,24 @@ public class RecoverPassword : MonoBehaviour
         { return true; };
 
         smtpServer.Send(mail);
-        Debug.Log("Success");
+        Debug.Log("Email sent");
     }
 
     public static string RandomString(int length)
     {
         const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         return new string(Enumerable.Repeat(chars, length).Select(s => s[random.Next(s.Length)]).ToArray());
+    }
+
+    public void CheckCode()
+    {
+        if (codeCheck.text == code)
+        {
+            Debug.Log("Success");
+        }
+        else
+        {
+            Debug.Log("Failed");
+        }
     }
 }

@@ -10,21 +10,21 @@ public class CreateAccount : MonoBehaviour
         username,
         password,
         email,
-        confEmail;
+        confPassword;
     public GameObject textField;
     public Text text;
     #endregion
 
     public void CreateUser()
     {
-        if (email.text == confEmail.text)
+        if (password.text == confPassword.text)
         {
             StartCoroutine(CreateUser(username.text, password.text, email.text));
         }
         else
         {
-            Debug.Log("Your emails don't match.");
-            text.text = "Your emails don't match.";
+            Debug.Log("Your passwords don't match.");
+            text.text = "Your passwords don't match.";
         }
     }
 
